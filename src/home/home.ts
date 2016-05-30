@@ -3,7 +3,7 @@ import { CORE_DIRECTIVES } from '@angular/common';
 import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { AuthHttp } from 'angular2-jwt';
-import { contentHeaders } from '../common/headers';
+//import { contentHeaders } from '../common/headers';
 
 let styles = require('./home.css');
 let template = require('./home.html');
@@ -26,29 +26,11 @@ export class Home {
     this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);
   }
 
-  logout2() {
+  logout() {
     localStorage.removeItem('jwt');
     this.router.parent.navigateByUrl('/login');
   }
-  logout() {
-    event.preventDefault();
 
-    //localStorage.removeItem('jwt');
-    //  this.router.parent.navigateByUrl('/login');
-    this.http.post('http://localhost:8888/laravel/public/logoutjwt',''
-    , { headers: contentHeaders })
-      .subscribe(
-        response => {
-          localStorage.removeItem('jwt');
-          this.router.parent.navigateByUrl('/login');
-        },
-        error => {
-          alert(error.text());
-          console.log(error.text());
-        //  this.router.parent.navigateByUrl('/login');
-        }
-      );
-  }
   callAnonymousApi() {
     this._callApi('Anonymous', 'http://localhost:3001/api/random-quote');
   }
