@@ -7,7 +7,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 let styles = require('./home.css');
 let template = require('./home.html');
-
+let jwtDecode = require('jwt-decode');
 
 @Component({
   selector: 'home',
@@ -23,7 +23,8 @@ export class Home {
 
   constructor(public router: Router, public http: Http, public authHttp: AuthHttp) {
     this.jwt = localStorage.getItem('jwt');
-    this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);
+    this.decodedJwt = this.jwt && jwtDecode(this.jwt);
+
   }
 
   logout() {
