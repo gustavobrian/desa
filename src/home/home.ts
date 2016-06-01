@@ -24,7 +24,6 @@ export class Home {
   constructor(public router: Router, public http: Http, public authHttp: AuthHttp) {
     this.jwt = localStorage.getItem('jwt');
     this.decodedJwt = this.jwt && jwtDecode(this.jwt);
-
   }
 
   logout() {
