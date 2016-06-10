@@ -3,6 +3,7 @@ import { CORE_DIRECTIVES } from '@angular/common';
 import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { AuthHttp } from 'angular2-jwt';
+
 //import { contentHeaders } from '../common/headers';
 
 let styles = require('./home.css');

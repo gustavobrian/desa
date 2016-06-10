@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router-deprecated';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import { Http } from '@angular/http';
-import { contentHeaders } from '../common/headers';
+import { contentHeaders } from '../../common/headers';
 
 let styles   = require('./signup.css');
 let template = require('./signup.html');
