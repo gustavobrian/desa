@@ -17,10 +17,13 @@
     "./src/pages/grid/components/grid.ts",
     "./src/pages/home/home.ts",
     "./src/pages/login/login.ts",
+    "./src/pages/login/recupera/recupera.ts",
     "./src/pages/signup/signup.ts",
     "./src/pages/usuario/index.ts",
     "./src/pages/usuario/usuario.component.spec.ts",
     "./src/pages/usuario/usuario.component.ts",
+    "./src/providers/api/api.ts",
+    "./src/validators/customvalidator.ts",
     "./src/widgets/sidebar/components/sidebar.ts",
     "./src/widgets/topnav/components/topnav.ts"
   ],

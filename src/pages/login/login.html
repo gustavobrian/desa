@@ -1,39 +1,135 @@
-<div class="login jumbotron center-block">
+<div class="login  center-block" >
 
-  <img src="../../assets/img/logo-ucar.png"  width="210px" height="59px">
-  <img src="../../assets/img/logo_ministerio2.png"  width="280px" height="80px">
+  <img src="../../src/assets/img/logo-ucar.png"  width="210px" height="59px" class="imgcenter">
+  <img src="../../src/assets/img/logo_ministerio2.png"  width="280px" height="80px" class="imgcenter">
 
-  <h1>Login2</h1>
-  <form role="form" (submit)="login($event, username.value, password.value)">
+<div class="container center-block" >
+  <h4>Ingreso al Sistema</h4>
+</div>
+  <form [ngFormModel]="loginForm" role="form" >
   <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" #username class="form-control" id="username" placeholder="Username">
+    <label>Email</label>
+          <input type="text" class="form-control" ngControl="email" />
+          <div *ngIf="email.dirty && !email.valid" class="alert alert-danger">
+            <p *ngIf="email.errors.email">
+              El campo email no es correcto
+            </p>
+            <p *ngIf="email.errors.required">
+              El campo name es requerido
+            </p>
+          </div>
   </div>
+
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" #password class="form-control" id="password" placeholder="Password">
+    <label>Clave</label>
+          <input type="password" class="form-control" ngControl="password" />
+          <div *ngIf="password.dirty && !password.valid" class="alert alert-danger">
+            <p *ngIf="password.errors.minlength">
+              El campo clave no puede tener menos de 4 carácteres
+            </p>
+            <p *ngIf="password.errors.required">
+              El campo clave es requerido
+            </p>
+          </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="/signup">Click here to Signup</a>
+
+  <button class="btn btn-primary" (click)="login($event,email.value, password.value)" [disabled]="!loginForm.valid">Ingresar
+         <span class="glyphicon glyphicon-user"></span>
+  </button>
+  <button class="btn btn-warning" (click)="recuperar(email.value)">Recuperar
+        <span class="glyphicon glyphicon-envelope"></span>
+  </button>
 </form>
 </div>
-<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-<button type="button" class="btn btn-primary">Primary</button>
 
-<!-- Secondary, outline button -->
-<button type="button" class="btn btn-secondary">Secondary</button>
+<div class="container center-block" >
+      <img src="../../src/assets/img/logosiig.gif"   width="141px" height="54px" class="imgcenter" id="picture" />
+</div>
 
-<!-- Indicates a successful or positive action -->
-<button type="button" class="btn btn-success">Success</button>
 
-<!-- Contextual button for informational alert messages -->
-<button type="button" class="btn btn-info">Info</button>
 
-<!-- Indicates caution should be taken with this action -->
-<button type="button" class="btn btn-warning">Warning</button>
 
-<!-- Indicates a dangerous or potentially negative action -->
-<button type="button" class="btn btn-danger">Danger</button>
+<section class="container">
+    <h1>Angular2 Bootstrap Modal</h1>
+    <hr>
 
-<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
-<button type="button" class="btn btn-link">Link</button>
+    <h2>Configuration</h2>
+    <hr>
+    <p>
+        <button type="button" class="btn btn-default" (click)="animation = !animation">Toggle Animation ({{ animation }})</button>
+        <button type="button" class="btn btn-default" (click)="keyboard = !keyboard">Toggle Keyboard ({{ keyboard }})</button>
+        <button type="button" class="btn btn-default" (click)="index = index + 1; backdrop = backdropOptions[index%3]">Toggle Backdrop ({{ backdrop }})</button>
+    </p>
+    <br />
+
+    <h2>Common Usage</h2>
+    <hr>
+    <p>
+        <button type="button" class="btn btn-default" (click)="modal.open()">Open me!</button>
+        <button type="button" class="btn btn-default" (click)="modal.open('lg')">Large modal</button>
+        <button type="button" class="btn btn-default" (click)="modal.open('sm')">Small modal</button>
+    </p>
+    <br />
+
+    <h2>Other Usages</h2>
+    <hr>
+    <p>
+        <button type="button" class="btn btn-default" (click)="navigateModal.open()">Navigate in modal</button>
+        <button type="button" class="btn btn-default" (click)="open()">Open from parent component</button>
+        <button type="button" class="btn btn-default" (click)="parentModal.open()">Nested modals</button>
+        <button type="button" class="btn btn-default" (click)="validationModal.open()">With form validation</button>
+    </p>
+    <br />
+
+    <h2>Output</h2>
+    <pre>{{ output }}</pre>
+
+    <modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" #modal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">I'm a modal!</h4>
+        </modal-header>
+        <modal-body>
+            <h4 class="modal-title">I'm a modal!</h4>
+        </modal-body>
+        <modal-footer [show-default-buttons]="true"></modal-footer>
+    </modal>
+
+    <modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="navigate()" (onOpen)="opened()" #navigateModal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">I'm a modal!</h4>
+        </modal-header>
+        <modal-body>
+            <p>I will navigate to another route when you close the modal.</p>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="navigateModal.dismiss()">Close</button>
+            <button type="button" class="btn btn-primary" autofocus (click)="navigateModal.close()">Go</button>
+        </modal-footer>
+    </modal>
+
+    <modal style="z-index: 1049" [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" #parentModal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">I'm a modal!</h4>
+        </modal-header>
+        <modal-body>
+            <p><strong>Note:</strong> My <code>z-index</code> is set to <code>1049</code>.</p>
+            <button type="button" class="btn btn-default" (click)="modal.open()">Open another modal</button>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="parentModal.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="parentModal.close()">Ok</button>
+        </modal-footer>
+    </modal>
+
+    <modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" #validationModal>
+        <form #modalForm="ngForm">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">I'm a modal!</h4>
+            </modal-header>
+
+        </form>
+    </modal>
+</section>

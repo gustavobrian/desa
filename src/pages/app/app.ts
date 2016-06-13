@@ -1,6 +1,6 @@
 import {Component,ViewEncapsulation} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-//import {Home} from '../home/home';
+import {Recupera} from '../login/recupera/recupera';
 import {Login} from '../login/login';
 import {DashboardCmp} from '../dashboard/dashboard';
 
@@ -19,7 +19,7 @@ let template = require('./app.html');
 @RouteConfig([
   { path: '/', redirectTo: ['/Login'] },
   { path: '/login', component: Login, as: 'Login', useAsDefault:true},
-//  { path: '/home', component: Home, as: 'Home'},
+  { path: '/recupera', component: Recupera, as: 'Recupera'},
   { path: '/dashboard/...', component: DashboardCmp, as: 'Dashboard' }
 ])
 export class App{}

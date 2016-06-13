@@ -1,0 +1,33 @@
+<div class="recupera  center-block">
+
+  <img src="../../src/assets/img/logo-ucar.png"  width="210px" height="59px" class="imgcenter">
+  <img src="../../src/assets/img/logo_ministerio2.png"  width="280px" height="80px" class="imgcenter">
+
+  <h3>Recuperar Clave</h3>
+  <form role="form" [ngFormModel]="recuperaForm">
+    <div class="form-group">
+      <label>Email</label>
+            <input type="text" class="form-control" ngControl="email" />
+            <div *ngIf="email.dirty && !email.valid" class="alert alert-danger">
+              <p *ngIf="email.errors.email">
+                El campo email no es correcto
+              </p>
+              <p *ngIf="email.errors.required">
+                El campo name es requerido
+              </p>
+            </div>
+    </div>
+
+
+  <button class="btn btn-primary" (click)="recuperar($event,email.value)" [disabled]="!recuperaForm.valid">Solicitar Clave
+         <span class="glyphicon glyphicon-envelope"></span>
+  </button>
+
+  <button class="btn btn-primary" (click)="volver()">Volver a Ingreso
+         <span class="glyphicon glyphicon-user"></span>
+  </button>
+</form>
+</div>
+<div class="container center-block" >
+            <img src="../../src/assets/img/logosiig.gif"   width="141px" height="54px" class="imgcenter" id="picture" />
+</div>
