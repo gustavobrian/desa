@@ -5,7 +5,6 @@ import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { Http, HTTP_PROVIDERS } from '@angular/http';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import {CONSTANTS_PROVIDER} from './constants/appconstants';
-
 import { App } from './pages/app/app';
 
 
