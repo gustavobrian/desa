@@ -5,7 +5,7 @@ import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { EmailValidator } from '../../validators/customvalidator';
 import { MODAL_DIRECTIVES, ModalComponent } from '../../../node_modules/ng2-bs3-modal/ng2-bs3-modal';
-import { Usuario } from '../../classes/usuario';
+//import { Usuario } from '../../classes/usuario';
 
 
 let styles   = require('./login.css');
@@ -23,7 +23,7 @@ export class Login {
   email: AbstractControl;
   password: AbstractControl;
 
-  usuario:Usuario;
+//  usuario:Usuario;
 
   //constructor(public router: Router, public http: Http) {
 //  }
@@ -52,6 +52,7 @@ export class Login {
     , { headers: contentHeaders })
       .subscribe(
         response => {
+      
           localStorage.setItem('jwt', response.json().token);
           this.router.navigate(['Dashboard']);
         },
