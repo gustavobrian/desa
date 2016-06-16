@@ -1,10 +1,11 @@
-import { Component ,ViewChild} from '@angular/core';
+import { Component} from '@angular/core';
 import { Router, RouterLink } from '@angular/router-deprecated';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES ,FormBuilder, Validators, ControlGroup, AbstractControl} from '@angular/common';
 import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { EmailValidator } from '../../validators/customvalidator';
 import { MODAL_DIRECTIVES, ModalComponent } from '../../../node_modules/ng2-bs3-modal/ng2-bs3-modal';
+import { Usuario } from '../../classes/usuario';
 
 
 let styles   = require('./login.css');
@@ -18,23 +19,11 @@ let template = require('./login.html');
 })
 export class Login {
 
-  @ViewChild('modal')
-   modal: ModalComponent;
-   items: string[] = ['item1', 'item2', 'item3'];
-   selected: string;
-   output: string;
-
-   index: number = 0;
-   backdropOptions = [true, false, 'static'];
-   animation: boolean = true;
-   keyboard: boolean = true;
-   backdrop: string | boolean = true;
-
-
-
   loginForm: ControlGroup;
   email: AbstractControl;
   password: AbstractControl;
+
+  usuario:Usuario;
 
   //constructor(public router: Router, public http: Http) {
 //  }
@@ -55,11 +44,11 @@ export class Login {
   //  this.password.value ='';
   }
 
-  login(event, email, password) {
+  login(event, email, clave) {
     event.preventDefault();
 
-    let body = JSON.stringify({ email, password });
-    this.http.post('http://localhost:8888/laravel/public/loginjwt', body
+    let body = JSON.stringify({ email, clave });
+    this.http.post('http://192.168.56.100/laravel/public/loginjwt', body
     , { headers: contentHeaders })
       .subscribe(
         response => {
@@ -83,23 +72,5 @@ export class Login {
     event.preventDefault();
     this.router.parent.navigateByUrl('/signup');
   }
-  closed() {
-        this.output = '(closed) ' + this.selected;
-    }
 
-    dismissed() {
-        this.output = '(dismissed)';
-    }
-
-    opened() {
-        this.output = '(opened)';
-    }
-
-    navigate() {
-        this.router.navigateByUrl('/hello');
-    }
-
-    open() {
-        this.modal.open();
-    }
 }
